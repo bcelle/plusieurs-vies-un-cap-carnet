@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex, noai, noimageai">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow">
+<title>Plusieurs vies, un cap : le carnet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#f5f5f5;--ink:#121212;--ink2:#656565;--ink3:#818181;--line:#dedede;--mint:#19e68c;--link:#159542;--card:#fff;--shadow:0 0 4px rgba(0,0,0,.04),8px 18px 20px -12px rgba(0,0,0,.16);--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-stretch:96%}
+.wrap{max-width:780px;margin:0 auto;padding:24px 20px 48px}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.15;margin:0}
+h1{font-size:44px;font-weight:700}
+h2{font-size:28px;font-weight:700}
+h3{font-size:17px;font-weight:600;margin:24px 0 8px}
+p{margin:0 0 8px}
+.meta{color:var(--ink2)}
+a{color:var(--link);text-decoration:underline}
+.intro{padding:32px 0 8px}
+.intro p{max-width:640px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.btn{font:inherit;font-weight:600;border:0;border-radius:999px;padding:10px 20px;cursor:pointer;transition:transform .15s var(--ease),background .15s var(--ease)}
+.btn-black{background:linear-gradient(#2a2a2a,#000);color:#fff}
+.btn-secondary{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 0;padding:0;list-style:none}
+.toc a{display:block;padding:6px 12px;border-radius:999px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 1px var(--line);font-size:14px}
+.toc a:hover{box-shadow:inset 0 0 0 1px var(--mint)}
+.page{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:32px;margin:32px 0}
+.page-head{display:flex;gap:16px;align-items:baseline;margin-bottom:8px}
+.num{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1;color:#e4e4e4}
+.ep{color:var(--ink2);font-size:14px;margin:4px 0 16px}
+.how{color:var(--ink2);font-size:14px;margin:0 0 16px}
+label.q{display:block;font-weight:600;font-size:15px;margin:20px 0 6px}
+textarea{width:100%;font:inherit;font-size:15px;line-height:28px;padding:2px 10px;border:0;border-radius:8px;background:#fafafa repeating-linear-gradient(transparent,transparent 27px,#e2e2e2 27px,#e2e2e2 28px);resize:vertical;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+textarea.s{min-height:56px}textarea.m{min-height:112px}textarea.l{min-height:196px}textarea.xl{min-height:280px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:700px){.g2,.g3{grid-template-columns:1fr}.page{padding:20px}h1{font-size:34px}}
+.tbl-wrap{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{border:1px solid var(--line);padding:0;text-align:left;vertical-align:top}
+th{background:#fafafa;padding:8px;font-weight:600;font-size:13px}
+td textarea{border-radius:0;box-shadow:none;min-height:56px;font-size:14px;line-height:28px;background:transparent repeating-linear-gradient(transparent,transparent 27px,#ececec 27px,#ececec 28px)}
+td.rl{padding:8px;font-weight:600;background:#fafafa;min-width:96px}
+.hint{font-size:13px;color:var(--ink2);margin:4px 0 0}
+.biblio{margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
+.biblio h3{margin-top:0}
+.biblio ul{margin:0;padding-left:20px;font-size:14px;color:#3d3d3d}
+.biblio li{margin-bottom:4px}
+.note{font-size:13px;color:var(--ink2);margin-top:12px}
+.stagger>*{animation:rise .25s var(--ease) both}
+.stagger>*:nth-child(2){animation-delay:.05s}.stagger>*:nth-child(3){animation-delay:.1s}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+ body{background:#fff;font-size:12pt}
+ .wrap{max-width:none;padding:0}
+ .noprint{display:none!important}
+ .page{box-shadow:none;border-radius:0;margin:0;padding:0 0 8mm;page-break-after:always;break-after:page}
+ .intro{page-break-after:always;break-after:page}
+ textarea{box-shadow:none;border-bottom:0;background:repeating-linear-gradient(transparent,transparent 27px,#bbb 27px,#bbb 28px);resize:none;overflow:hidden}
+ th,td{border-color:#999}
+ .num{color:#ccc}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="intro stagger">
+<h1>Plusieurs vies, un cap</h1>
+<p class="meta">Le carnet de la série. 8 pages, une par épisode, et la bibliographie de chaque épisode en bas de page.</p>
+<p>Ouvre la page indiquée au début de chaque épisode, mets l'épisode en pause quand il te le demande, puis écris. Tu peux remplir ce carnet à l'écran (tes réponses restent dans ce navigateur) ou l'imprimer et écrire au stylo.</p>
+<div class="bar noprint">
+<button class="btn btn-black" type="button" onclick="window.print()">Imprimer le carnet</button>
+<button class="btn btn-secondary" type="button" id="clear">Effacer mes réponses</button>
+</div>
+<ul class="toc noprint">
+<li><a href="#p1">Page 1</a></li><li><a href="#p2">Page 2</a></li><li><a href="#p3">Page 3</a></li><li><a href="#p4">Page 4</a></li><li><a href="#p5">Page 5</a></li><li><a href="#p6">Page 6</a></li><li><a href="#p7">Page 7</a></li><li><a href="#p8">Page 8</a></li>
+</ul>
+<p class="note">Ce carnet est un outil de réflexion. Il ne remplace pas l'avis d'un conseiller en évolution professionnelle. Pour les aides, les droits et les formations, ton conseiller France Travail reste l'interlocuteur pour confirmer ta situation. Ce contenu a été généré avec l'aide de l'IA.</p>
+</header>
+<main>
+<section class="page" id="p1">
+<div class="page-head"><span class="num">1</span><h2>Multipotentiel, pas dispersé</h2></div>
+<p class="ep">Épisode 1</p>
+<p class="how">Une fois l'épisode écouté, écris sans te censurer. Il n'y a pas de bonne réponse.</p>
+
+<label class="q" for="p1a">Mes intérêts : tout ce qui me passionne ou m'a passionné·e, sans tri</label>
+<textarea class="l" id="p1a" data-k="p1a"></textarea>
+
+<label class="q" for="p1b">Mes forces de multipotentiel (j'apprends vite, je fais des liens, je m'adapte…) : celles que je reconnais en moi, avec un exemple</label>
+<textarea class="m" id="p1b" data-k="p1b"></textarea>
+
+<h3>Mes étiquettes réécrites</h3>
+<p class="how">Un reproche qu'on m'a fait, ou que je me fais, devient une description plus juste.</p>
+<div class="tbl-wrap"><table>
+<tr><th style="width:50%">Avant (le reproche)</th><th>Après (la description juste)</th></tr>
+<tr><td><textarea data-k="p1e1a"></textarea></td><td><textarea data-k="p1e1b"></textarea></td></tr>
+<tr><td><textarea data-k="p1e2a"></textarea></td><td><textarea data-k="p1e2b"></textarea></td></tr>
+<tr><td><textarea data-k="p1e3a"></textarea></td><td><textarea data-k="p1e3b"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p1c">Mon modèle de travail préféré (Group Hug, Slash, Einstein ou Phoenix) et pourquoi</label>
+<textarea class="m" id="p1c" data-k="p1c"></textarea>
+
+<label class="q" for="p1d">Mon regret, s'il y en a un : qu'est-ce qu'il m'apprend sur ce qui compte pour moi ?</label>
+<textarea class="m" id="p1d" data-k="p1d"></textarea>
+
+<div class="grid g2">
+<div><label class="q" for="p1f">Situation clé n°1 : un moment où être multipotentiel·le m'a servi·e</label>
+<textarea class="m" id="p1f" data-k="p1f"></textarea></div>
+<div><label class="q" for="p1g">Situation clé n°2 : un moment où cela m'a mis·e en difficulté</label>
+<textarea class="m" id="p1g" data-k="p1g"></textarea></div>
+</div>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 1</h3><ul>
+<li>Emilie Wapnick, <em>How to Be Everything</em> et conférence TED « Why some of us don't have one true calling » (2015) : trois forces et quatre modèles de travail.</li>
+<li>Barbara Sher, <em>Refuse to Choose!</em> : le profil de « scanner ».</li>
+<li>David Epstein, <em>Range</em> : les avantages de la polyvalence.</li>
+<li>Philip Tetlock, travaux sur les « renards » et les « hérissons » dans le jugement d'expert.</li>
+<li>Daniel Pink, <em>The Power of Regret</em> : le regret comme information.</li>
+<li>Thomas Gilovich et Victoria Husted Medvec, travaux sur le regret à court terme et à long terme.</li>
+<li>Insee, Informations rapides : chômage au 3<sup>e</sup> trimestre 2026 (8,2 %).</li>
+</ul></div>
+</section>
+<section class="page" id="p2">
+<div class="page-head"><span class="num">2</span><h2>Relire son parcours</h2></div>
+<p class="ep">Épisode 2</p>
+<p class="how">Prépare une feuille en paysage pour la frise, ou utilise l'espace ci-dessous. Emplois au-dessus de la ligne, tout le reste en dessous.</p>
+
+<h3>Ma frise de parcours (10 à 15 jalons)</h3>
+<label class="q" for="p2a">Au-dessus de la ligne : mes emplois et missions, avec les dates</label>
+<textarea class="l" id="p2a" data-k="p2a"></textarea>
+<label class="q" for="p2b">En dessous : formations, projets, passions, déménagements, rencontres, événements marquants</label>
+<textarea class="l" id="p2b" data-k="p2b"></textarea>
+
+<h3>Ma courbe d'énergie</h3>
+<p class="how">3 sommets (périodes où j'étais pleinement en énergie) et 2 creux. Une phrase par sommet ou creux.</p>
+<div class="tbl-wrap"><table>
+<tr><th style="width:22%">Moment</th><th>Quand et où ?</th><th>Ce qui s'est passé, en une phrase</th></tr>
+<tr><td class="rl">Sommet 1</td><td><textarea data-k="p2s1a"></textarea></td><td><textarea data-k="p2s1b"></textarea></td></tr>
+<tr><td class="rl">Sommet 2</td><td><textarea data-k="p2s2a"></textarea></td><td><textarea data-k="p2s2b"></textarea></td></tr>
+<tr><td class="rl">Sommet 3</td><td><textarea data-k="p2s3a"></textarea></td><td><textarea data-k="p2s3b"></textarea></td></tr>
+<tr><td class="rl">Creux 1</td><td><textarea data-k="p2c1a"></textarea></td><td><textarea data-k="p2c1b"></textarea></td></tr>
+<tr><td class="rl">Creux 2</td><td><textarea data-k="p2c2a"></textarea></td><td><textarea data-k="p2c2b"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p2d">Mon fil rouge : 3 verbes ou thèmes qui reviennent dans mes sommets</label>
+<textarea class="m" id="p2d" data-k="p2d"></textarea>
+
+<h3>Trois questions narratives</h3>
+<label class="q" for="p2e">Quels modèles ai-je admirés, enfant ou adolescent·e ?</label>
+<textarea class="m" id="p2e" data-k="p2e"></textarea>
+<label class="q" for="p2f">Quelle histoire marquante (livre, film, anecdote) me revient souvent ?</label>
+<textarea class="m" id="p2f" data-k="p2f"></textarea>
+<label class="q" for="p2g">Quelle devise ou phrase me guide, même sans que je l'aie choisie ?</label>
+<textarea class="s" id="p2g" data-k="p2g"></textarea>
+
+<label class="q" for="p2h">Ma phrase : « Dans toutes mes vies, je cherche à… »</label>
+<textarea class="s" id="p2h" data-k="p2h"></textarea>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 2</h3><ul>
+<li>Mon compte formation : le bilan de compétences (3 phases, 24 heures maximum, participation de 150 €).</li>
+<li>Oasys, programme de bilan de compétences 2024 : exercice de ligne de vie.</li>
+<li>Mark Savickas, <em>Career Construction Interview</em> et <em>Career Construction Theory and Practice</em>.</li>
+<li>Dan McAdams, <em>When Bad Things Turn Good and Good Things Turn Bad</em>, Personality and Social Psychology Bulletin, 2001 : récits de rédemption et de contamination.</li>
+<li>Herminia Ibarra, <em>Working Identity</em>.</li>
+<li>Bill Burnett et Dave Evans, <em>Designing Your Life</em> : le Good Time Journal.</li>
+</ul></div>
+</section>
+<section class="page" id="p3">
+<div class="page-head"><span class="num">3</span><h2>Inventaire des compétences</h2></div>
+<p class="ep">Épisode 3</p>
+<p class="how">Remplis les colonnes de verbes d'action (« organiser », « expliquer », « réparer »…). Entoure un verbe par colonne. Devant chaque verbe, note + (ça me donne de l'énergie) ou − (ça m'en prend).</p>
+
+<h3>Mes verbes d'action</h3>
+<div class="grid g3">
+<div><label class="q" for="p3a">Données (chiffres, informations, documents)</label><textarea class="xl" id="p3a" data-k="p3a"></textarea></div>
+<div><label class="q" for="p3b">Personnes (écouter, former, convaincre)</label><textarea class="xl" id="p3b" data-k="p3b"></textarea></div>
+<div><label class="q" for="p3c">Choses (outils, matière, espaces)</label><textarea class="xl" id="p3c" data-k="p3c"></textarea></div>
+</div>
+<label class="q" for="p3d">Mon verbe entouré dans chaque colonne</label>
+<textarea class="s" id="p3d" data-k="p3d"></textarea>
+
+<label class="q" for="p3e">Mes 3 compétences invisibles : celles qui me paraissent évidentes, mais que mes proches reconnaissent</label>
+<textarea class="m" id="p3e" data-k="p3e"></textarea>
+
+<h3>Mes 5 mini-récits de preuve (méthode STAR)</h3>
+<p class="how">En 4 lignes : la Situation, la Tâche, l'Action que j'ai menée, le Résultat. La méthode STAR est un cadre d'usage courant, pas une méthode officielle de France Travail.</p>
+<div class="grid g2">
+<div><label class="q" for="p3r1">Récit 1</label><textarea class="m" id="p3r1" data-k="p3r1"></textarea></div>
+<div><label class="q" for="p3r2">Récit 2</label><textarea class="m" id="p3r2" data-k="p3r2"></textarea></div>
+<div><label class="q" for="p3r3">Récit 3</label><textarea class="m" id="p3r3" data-k="p3r3"></textarea></div>
+<div><label class="q" for="p3r4">Récit 4</label><textarea class="m" id="p3r4" data-k="p3r4"></textarea></div>
+</div>
+<label class="q" for="p3r5">Récit 5</label>
+<textarea class="m" id="p3r5" data-k="p3r5"></textarea>
+
+<h3>Au dos : 3 phrases « Je suis capable de… »</h3>
+<textarea class="m" id="p3f" data-k="p3f" aria-label="Trois phrases Je suis capable de"></textarea>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 3</h3><ul>
+<li>France Travail : savoirs, savoir-faire et savoir-être ; compétences transférables et transversales.</li>
+<li>Gallup, CliftonStrengths (Marcus Buckingham) : les forces.</li>
+<li>Richard Bolles, <em>What Color Is Your Parachute?</em> : la grille données, personnes, choses (version PDF 2018 hébergée par un site tiers).</li>
+<li>France Travail et ministère du Travail : validation des acquis de l'expérience (VAE) et portfolio de compétences.</li>
+</ul></div>
+</section>
+<section class="page" id="p4">
+<div class="page-head"><span class="num">4</span><h2>Ce qui t'anime vraiment</h2></div>
+<p class="ep">Épisode 4</p>
+<p class="how">Ces modèles (Schwartz, Schein, Deci et Ryan) sont des cadres de réflexion, pas des tests qui disent qui tu es.</p>
+
+<h3>Mes 10 valeurs (Schwartz)</h3>
+<p class="how">Pouvoir, réussite, hédonisme, stimulation, autonomie, universalisme, bienveillance, tradition, conformité, sécurité. Entoure-en 3, barre-en 3. Pour chaque valeur entourée, note un moment où elle a été respectée et un moment où elle a été bafouée.</p>
+<label class="q" for="p4a">Valeurs entourées (3) et barrées (3)</label>
+<textarea class="m" id="p4a" data-k="p4a"></textarea>
+<div class="tbl-wrap"><table>
+<tr><th style="width:22%">Valeur entourée</th><th>Un moment respecté</th><th>Un moment bafoué</th></tr>
+<tr><td><textarea data-k="p4v1a"></textarea></td><td><textarea data-k="p4v1b"></textarea></td><td><textarea data-k="p4v1c"></textarea></td></tr>
+<tr><td><textarea data-k="p4v2a"></textarea></td><td><textarea data-k="p4v2b"></textarea></td><td><textarea data-k="p4v2c"></textarea></td></tr>
+<tr><td><textarea data-k="p4v3a"></textarea></td><td><textarea data-k="p4v3b"></textarea></td><td><textarea data-k="p4v3c"></textarea></td></tr>
+</table></div>
+
+<h3>Mes ancres de carrière (Schein)</h3>
+<p class="how">Technique, management, autonomie, sécurité, créativité, service, défi, style de vie. Garde-en 2, lâche-en 1.</p>
+<label class="q" for="p4b">Ancres gardées (2), ancre lâchée (1), et pourquoi</label>
+<textarea class="m" id="p4b" data-k="p4b"></textarea>
+
+<h3>Mes sommets et mes besoins de base</h3>
+<p class="how">Pour chaque sommet de la page 2, coche ce qui était présent : autonomie, compétence, lien. Puis note le besoin dominant.</p>
+<div class="tbl-wrap"><table>
+<tr><th style="width:24%">Sommet</th><th>Autonomie</th><th>Compétence</th><th>Lien</th><th>Besoin dominant</th></tr>
+<tr><td class="rl">Sommet 1</td><td><textarea data-k="p4t1a"></textarea></td><td><textarea data-k="p4t1b"></textarea></td><td><textarea data-k="p4t1c"></textarea></td><td><textarea data-k="p4t1d"></textarea></td></tr>
+<tr><td class="rl">Sommet 2</td><td><textarea data-k="p4t2a"></textarea></td><td><textarea data-k="p4t2b"></textarea></td><td><textarea data-k="p4t2c"></textarea></td><td><textarea data-k="p4t2d"></textarea></td></tr>
+<tr><td class="rl">Sommet 3</td><td><textarea data-k="p4t3a"></textarea></td><td><textarea data-k="p4t3b"></textarea></td><td><textarea data-k="p4t3c"></textarea></td><td><textarea data-k="p4t3d"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p4c">Mes 10 curiosités. Cerclées si elles reviennent spontanément, depuis longtemps</label>
+<textarea class="l" id="p4c" data-k="p4c"></textarea>
+<label class="q" for="p4d">Les échos : ce qui revient entre valeurs, ancres, besoins et curiosités (souligne-les)</label>
+<textarea class="m" id="p4d" data-k="p4d"></textarea>
+<label class="q" for="p4e">Ma phrase : « Ce qui m'anime, c'est… »</label>
+<textarea class="s" id="p4e" data-k="p4e"></textarea>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 4</h3><ul>
+<li>Shalom Schwartz, théorie des valeurs humaines (10 types de valeurs, cercle de compatibilités et de conflits).</li>
+<li>Edgar Schein, les ancres de carrière (8 ancres).</li>
+<li>Edward Deci et Richard Ryan, théorie de l'autodétermination : autonomie, compétence, lien.</li>
+<li>Suzanne Hidi et K. Ann Renninger, modèle de développement de l'intérêt (intérêt situationnel et intérêt individuel, 4 phases).</li>
+</ul></div>
+</section>
+<section class="page" id="p5">
+<div class="page-head"><span class="num">5</span><h2>Les contraintes réelles</h2></div>
+<p class="ep">Épisode 5</p>
+<p class="how">Les chiffres du marché sont datés dans la bibliographie. Pour tes droits et tes aides, ton conseiller reste l'interlocuteur.</p>
+
+<h3>Mes secteurs et métiers, avec leur note de recrutement</h3>
+<p class="how">2 à 3 secteurs ou métiers. Note de recrutement (source : France Travail, Besoins en main-d'œuvre) : combien de projets de recrutement, et la part jugée difficile.</p>
+<div class="tbl-wrap"><table>
+<tr><th style="width:30%">Secteur ou métier</th><th>Projets de recrutement</th><th>Part de projets difficiles</th><th>Métier en tension ?</th></tr>
+<tr><td><textarea data-k="p5m1a"></textarea></td><td><textarea data-k="p5m1b"></textarea></td><td><textarea data-k="p5m1c"></textarea></td><td><textarea data-k="p5m1d"></textarea></td></tr>
+<tr><td><textarea data-k="p5m2a"></textarea></td><td><textarea data-k="p5m2b"></textarea></td><td><textarea data-k="p5m2c"></textarea></td><td><textarea data-k="p5m2d"></textarea></td></tr>
+<tr><td><textarea data-k="p5m3a"></textarea></td><td><textarea data-k="p5m3b"></textarea></td><td><textarea data-k="p5m3c"></textarea></td><td><textarea data-k="p5m3d"></textarea></td></tr>
+</table></div>
+
+<h3>Mon budget</h3>
+<div class="grid g2">
+<div><label class="q" for="p5a">Budget minimum mensuel (en euros)</label><textarea class="s" id="p5a" data-k="p5a"></textarea></div>
+<div><label class="q" for="p5b">Durée de tenue avec ce budget (en mois)</label><textarea class="s" id="p5b" data-k="p5b"></textarea></div>
+</div>
+
+<h3>Mon tableau des contraintes</h3>
+<p class="how">Pour chaque ligne, écris la contrainte, puis son code : rouge (non négociable), orange (négociable), vert (pas un problème).</p>
+<div class="tbl-wrap"><table>
+<tr><th style="width:20%">Contrainte</th><th>Ce qui est vrai pour moi</th><th style="width:18%">Rouge, orange ou vert</th></tr>
+<tr><td class="rl">Argent</td><td><textarea data-k="p5c1a"></textarea></td><td><textarea data-k="p5c1b"></textarea></td></tr>
+<tr><td class="rl">Temps</td><td><textarea data-k="p5c2a"></textarea></td><td><textarea data-k="p5c2b"></textarea></td></tr>
+<tr><td class="rl">Géographie</td><td><textarea data-k="p5c3a"></textarea></td><td><textarea data-k="p5c3b"></textarea></td></tr>
+<tr><td class="rl">Entourage</td><td><textarea data-k="p5c4a"></textarea></td><td><textarea data-k="p5c4b"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p5d">3 phrases « Pour moi, c'est non négociable » (mes rouges)</label>
+<textarea class="m" id="p5d" data-k="p5d"></textarea>
+<label class="q" for="p5e">3 phrases « Je peux négocier » (mes oranges)</label>
+<textarea class="m" id="p5e" data-k="p5e"></textarea>
+<label class="q" for="p5f">Une ligne orange à faire passer au vert cette semaine, avec la date</label>
+<textarea class="s" id="p5f" data-k="p5f"></textarea>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 5</h3><ul>
+<li>Insee, <a href="https://www.insee.fr/fr/statistiques/9118603" target="_blank" rel="noopener">Informations rapides n° 270</a> : chômage au 3<sup>e</sup> trimestre 2026 à 8,2 %, en hausse de 0,4 point sur un an.</li>
+<li>France Travail, Besoins en main-d'œuvre 2026 : par exemple 93 800 projets de recrutement de serveurs de cafés-restaurants ; 43,8 % de projets jugés difficiles, contre 50,1 % en 2025.</li>
+<li>Ministère du Travail, arrêté du 22 mai 2025 sur les métiers en tension et « Les tensions sur le marché du travail en 2024 ».</li>
+<li>France Travail, aide individuelle à la formation (AIF) et « Comment financer ma formation ? » (ARE, AREF). À confirmer avec ton conseiller.</li>
+</ul></div>
+</section>
+<section class="page" id="p6">
+<div class="page-head"><span class="num">6</span><h2>Croiser le tout</h2></div>
+<p class="ep">Épisode 6</p>
+<p class="how">Croise tes pages 3, 4 et 5 avec le marché. Pour chaque case, note + (oui), − (non) ou ? (je ne sais pas encore).</p>
+
+<h3>Mon tableau de croisement (8 pistes ou plus)</h3>
+<div class="tbl-wrap"><table>
+<tr><th style="width:28%">Piste</th><th>Mes compétences</th><th>Ce qui compte pour moi</th><th>Mon cadre</th><th>Le marché</th></tr>
+<tr><td><textarea data-k="p6t1a"></textarea></td><td><textarea data-k="p6t1b"></textarea></td><td><textarea data-k="p6t1c"></textarea></td><td><textarea data-k="p6t1d"></textarea></td><td><textarea data-k="p6t1e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t2a"></textarea></td><td><textarea data-k="p6t2b"></textarea></td><td><textarea data-k="p6t2c"></textarea></td><td><textarea data-k="p6t2d"></textarea></td><td><textarea data-k="p6t2e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t3a"></textarea></td><td><textarea data-k="p6t3b"></textarea></td><td><textarea data-k="p6t3c"></textarea></td><td><textarea data-k="p6t3d"></textarea></td><td><textarea data-k="p6t3e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t4a"></textarea></td><td><textarea data-k="p6t4b"></textarea></td><td><textarea data-k="p6t4c"></textarea></td><td><textarea data-k="p6t4d"></textarea></td><td><textarea data-k="p6t4e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t5a"></textarea></td><td><textarea data-k="p6t5b"></textarea></td><td><textarea data-k="p6t5c"></textarea></td><td><textarea data-k="p6t5d"></textarea></td><td><textarea data-k="p6t5e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t6a"></textarea></td><td><textarea data-k="p6t6b"></textarea></td><td><textarea data-k="p6t6c"></textarea></td><td><textarea data-k="p6t6d"></textarea></td><td><textarea data-k="p6t6e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t7a"></textarea></td><td><textarea data-k="p6t7b"></textarea></td><td><textarea data-k="p6t7c"></textarea></td><td><textarea data-k="p6t7d"></textarea></td><td><textarea data-k="p6t7e"></textarea></td></tr>
+<tr><td><textarea data-k="p6t8a"></textarea></td><td><textarea data-k="p6t8b"></textarea></td><td><textarea data-k="p6t8c"></textarea></td><td><textarea data-k="p6t8d"></textarea></td><td><textarea data-k="p6t8e"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p6a">2 combinaisons hybrides (modèles Group Hug ou Phoenix de Wapnick) : quelles pistes associer, et comment ?</label>
+<textarea class="m" id="p6a" data-k="p6a"></textarea>
+
+<label class="q" for="p6b">Mes 2 types de Holland par piste (réaliste, investigateur, artistique, social, entreprenant, conventionnel)</label>
+<textarea class="m" id="p6b" data-k="p6b"></textarea>
+
+<label class="q" for="p6c">2 métiers proches par piste (fiches ROME et MétierScope de France Travail)</label>
+<textarea class="m" id="p6c" data-k="p6c"></textarea>
+
+<h3>3 plans Odyssée (Burnett et Evans)</h3>
+<p class="how">Pour chaque plan : un titre, 2 questions à explorer, et un tableau de bord noté de 1 à 5 (ressources, envie, confiance, cohérence).</p>
+<div class="grid g3">
+<div><label class="q" for="p6o1">Plan 1</label><textarea class="l" id="p6o1" data-k="p6o1"></textarea></div>
+<div><label class="q" for="p6o2">Plan 2</label><textarea class="l" id="p6o2" data-k="p6o2"></textarea></div>
+<div><label class="q" for="p6o3">Plan 3</label><textarea class="l" id="p6o3" data-k="p6o3"></textarea></div>
+</div>
+
+<h3>Mes 3 fiches de pistes finales</h3>
+<p class="how">Pour chacune : pourquoi ça me correspond, pourquoi ça tient dans mon cadre, et 2 inconnues à vérifier.</p>
+<div class="grid g3">
+<div><label class="q" for="p6f1">Piste 1</label><textarea class="xl" id="p6f1" data-k="p6f1"></textarea></div>
+<div><label class="q" for="p6f2">Piste 2</label><textarea class="xl" id="p6f2" data-k="p6f2"></textarea></div>
+<div><label class="q" for="p6f3">Piste 3</label><textarea class="xl" id="p6f3" data-k="p6f3"></textarea></div>
+</div>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 6</h3><ul>
+<li>Emilie Wapnick, <em>How to Be Everything</em> (extrait via OpenLearn, open.edu) : Group Hug, Slash, Einstein, Phoenix. Seuls Group Hug et Phoenix sont détaillés dans l'extrait consulté ; pour les deux autres modèles, voir le livre.</li>
+<li>Bill Burnett et Dave Evans, <em>Designing Your Life</em> : fiche Odyssey Planning.</li>
+<li>O*NET Interest Profiler Manual (onetcenter.org) : types de Holland (RIASEC).</li>
+<li>France Travail : le ROME et les fiches métiers ; MétierScope.</li>
+</ul></div>
+</section>
+<section class="page" id="p7">
+<div class="page-head"><span class="num">7</span><h2>Tester avant de sauter</h2></div>
+<p class="ep">Épisode 7</p>
+<p class="how">Pour chaque piste finale de la page 6, prépare des tests courts et datés. Pour l'immersion et le financement d'une formation, ton conseiller France Travail confirme ce qui est possible dans ta situation.</p>
+
+<label class="q" for="p7a">Mon message type pour un entretien exploratoire (court, précis, avec ma demande de 20 minutes)</label>
+<textarea class="m" id="p7a" data-k="p7a"></textarea>
+<label class="q" for="p7b">Mes 5 questions d'entretien</label>
+<textarea class="l" id="p7b" data-k="p7b"></textarea>
+
+<div class="grid g3">
+<div><label class="q" for="p7c1">Mini-mission piste 1 (moins de 10 heures)</label><textarea class="m" id="p7c1" data-k="p7c1"></textarea></div>
+<div><label class="q" for="p7c2">Mini-mission piste 2 (moins de 10 heures)</label><textarea class="m" id="p7c2" data-k="p7c2"></textarea></div>
+<div><label class="q" for="p7c3">Mini-mission piste 3 (moins de 10 heures)</label><textarea class="m" id="p7c3" data-k="p7c3"></textarea></div>
+</div>
+
+<label class="q" for="p7d">Une idée d'immersion en entreprise (PMSMP) et la question à poser à mon conseiller</label>
+<textarea class="m" id="p7d" data-k="p7d"></textarea>
+<label class="q" for="p7e">Une formation courte repérée : durée, coût, financement possible à confirmer</label>
+<textarea class="m" id="p7e" data-k="p7e"></textarea>
+
+<h3>Mon journal de tests</h3>
+<p class="how">6 lignes au minimum, 2 tests par piste. Après chaque test : ce qui m'a surpris·e, ce qui m'a donné de l'énergie, ce qui m'a pesé. Puis + ou −.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Piste</th><th>Question à vérifier</th><th>Test</th><th style="width:12%">Date</th><th>Ce que j'ai appris</th><th style="width:9%">+ / −</th></tr>
+<tr><td><textarea data-k="p7j1a"></textarea></td><td><textarea data-k="p7j1b"></textarea></td><td><textarea data-k="p7j1c"></textarea></td><td><textarea data-k="p7j1d"></textarea></td><td><textarea data-k="p7j1e"></textarea></td><td><textarea data-k="p7j1f"></textarea></td></tr>
+<tr><td><textarea data-k="p7j2a"></textarea></td><td><textarea data-k="p7j2b"></textarea></td><td><textarea data-k="p7j2c"></textarea></td><td><textarea data-k="p7j2d"></textarea></td><td><textarea data-k="p7j2e"></textarea></td><td><textarea data-k="p7j2f"></textarea></td></tr>
+<tr><td><textarea data-k="p7j3a"></textarea></td><td><textarea data-k="p7j3b"></textarea></td><td><textarea data-k="p7j3c"></textarea></td><td><textarea data-k="p7j3d"></textarea></td><td><textarea data-k="p7j3e"></textarea></td><td><textarea data-k="p7j3f"></textarea></td></tr>
+<tr><td><textarea data-k="p7j4a"></textarea></td><td><textarea data-k="p7j4b"></textarea></td><td><textarea data-k="p7j4c"></textarea></td><td><textarea data-k="p7j4d"></textarea></td><td><textarea data-k="p7j4e"></textarea></td><td><textarea data-k="p7j4f"></textarea></td></tr>
+<tr><td><textarea data-k="p7j5a"></textarea></td><td><textarea data-k="p7j5b"></textarea></td><td><textarea data-k="p7j5c"></textarea></td><td><textarea data-k="p7j5d"></textarea></td><td><textarea data-k="p7j5e"></textarea></td><td><textarea data-k="p7j5f"></textarea></td></tr>
+<tr><td><textarea data-k="p7j6a"></textarea></td><td><textarea data-k="p7j6b"></textarea></td><td><textarea data-k="p7j6c"></textarea></td><td><textarea data-k="p7j6d"></textarea></td><td><textarea data-k="p7j6e"></textarea></td><td><textarea data-k="p7j6f"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p7f">Ma règle de lecture : après chaque test, je décide de recommencer, continuer ou arrêter, parce que…</label>
+<textarea class="m" id="p7f" data-k="p7f"></textarea>
+<label class="q" for="p7g">Au dos : 3 engagements datés</label>
+<textarea class="m" id="p7g" data-k="p7g"></textarea>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 7</h3><ul>
+<li>Herminia Ibarra, <em>Working Identity</em> : tester et apprendre (projets annexes, missions temporaires, cours).</li>
+<li>Bill Burnett et Dave Evans, <em>Designing Your Life</em> : l'entretien de vie (Life Design Interview), la conversation comme prototype.</li>
+<li>Ministère du Travail, période de mise en situation en milieu professionnel (PMSMP) : durée maximale d'un mois, convention, ne remplace pas un salarié, prescrite par France Travail.</li>
+<li>France Travail, formations courtes avec le compte personnel de formation (CPF) et abondement : réponse sous environ 10 jours ouvrés ; vérifier que la rémunération est garantie.</li>
+</ul></div>
+</section>
+<section class="page" id="p8">
+<div class="page-head"><span class="num">8</span><h2>Choisir et avancer</h2></div>
+<p class="ep">Épisode 8</p>
+<p class="how">Écris en haut de la page le nom de la personne à qui tu enverras une phrase par semaine.</p>
+<label class="q" for="p8z">Ma personne de soutien</label>
+<textarea class="s" id="p8z" data-k="p8z"></textarea>
+
+<h3>Ma grille de décision</h3>
+<p class="how">Note chaque case de 1 à 5 et ajoute un mot d'explication. Le critère « cadre » est éliminatoire : une piste qui enfreint une ligne rouge de la page 5 ne passe pas. La grille fait apparaître des écarts, elle ne décide pas à ta place. Souligne les cases où tu as hésité.</p>
+<div class="tbl-wrap"><table>
+<tr><th style="width:18%">Piste</th><th>Mes tests</th><th>Ce qui m'anime</th><th>Mes compétences</th><th>Mon cadre</th><th>Le marché</th><th>Mon énergie dans 1 an</th></tr>
+<tr><td><textarea data-k="p8g1a"></textarea></td><td><textarea data-k="p8g1b"></textarea></td><td><textarea data-k="p8g1c"></textarea></td><td><textarea data-k="p8g1d"></textarea></td><td><textarea data-k="p8g1e"></textarea></td><td><textarea data-k="p8g1f"></textarea></td><td><textarea data-k="p8g1g"></textarea></td></tr>
+<tr><td><textarea data-k="p8g2a"></textarea></td><td><textarea data-k="p8g2b"></textarea></td><td><textarea data-k="p8g2c"></textarea></td><td><textarea data-k="p8g2d"></textarea></td><td><textarea data-k="p8g2e"></textarea></td><td><textarea data-k="p8g2f"></textarea></td><td><textarea data-k="p8g2g"></textarea></td></tr>
+<tr><td><textarea data-k="p8g3a"></textarea></td><td><textarea data-k="p8g3b"></textarea></td><td><textarea data-k="p8g3c"></textarea></td><td><textarea data-k="p8g3d"></textarea></td><td><textarea data-k="p8g3e"></textarea></td><td><textarea data-k="p8g3f"></textarea></td><td><textarea data-k="p8g3g"></textarea></td></tr>
+</table></div>
+
+<label class="q" for="p8a">Le profil de chaque piste : envie, sécurité ou équilibrée</label>
+<textarea class="m" id="p8a" data-k="p8a"></textarea>
+<label class="q" for="p8b">Mon instinct : si je commence une seule piste lundi, laquelle ? Laquelle en réserve ?</label>
+<textarea class="m" id="p8b" data-k="p8b"></textarea>
+<label class="q" for="p8c">Si l'instinct et la grille divergent : deux phrases, une pour défendre chaque piste</label>
+<textarea class="m" id="p8c" data-k="p8c"></textarea>
+
+<h3>Mon choix</h3>
+<label class="q" for="p8d">Ma piste principale pour les 90 prochains jours, c'est…</label>
+<textarea class="s" id="p8d" data-k="p8d"></textarea>
+<label class="q" for="p8e">Ma piste de réserve, c'est…</label>
+<textarea class="s" id="p8e" data-k="p8e"></textarea>
+<label class="q" for="p8f">Ce que je mets de côté pour l'instant, c'est…</label>
+<textarea class="s" id="p8f" data-k="p8f"></textarea>
+
+<h3>Mon plan sur 90 jours</h3>
+<p class="how">Pour chaque action : une date ou une semaine, et le temps nécessaire. Le total doit tenir dans tes heures par semaine de la page 5.</p>
+<div class="grid g3">
+<div><label class="q" for="p8m1">Mois 1 : explorer et ouvrir des portes (5 actions)</label><textarea class="xl" id="p8m1" data-k="p8m1"></textarea></div>
+<div><label class="q" for="p8m2">Mois 2 : s'engager sur de petits livrables (5 actions)</label><textarea class="xl" id="p8m2" data-k="p8m2"></textarea></div>
+<div><label class="q" for="p8m3">Mois 3 : consolider et préparer la suite</label><textarea class="xl" id="p8m3" data-k="p8m3"></textarea></div>
+</div>
+
+<label class="q" for="p8h">10 phrases « Si… alors… » (7 pour mes actions du mois 1, 3 pour mes obstacles probables)</label>
+<textarea class="xl" id="p8h" data-k="p8h"></textarea>
+<label class="q" for="p8i">Mon minimum vital pour les mauvaises semaines (la plus petite action qui compte)</label>
+<textarea class="s" id="p8i" data-k="p8i"></textarea>
+<label class="q" for="p8j">Mes 3 rendez-vous avec moi-même (dates). Questions : ce que j'ai fait, appris, ce qui m'a surpris·e, ce que je change</label>
+<textarea class="m" id="p8j" data-k="p8j"></textarea>
+<label class="q" for="p8k">Ma présentation en 3 phrases (ce que je fais ou cherche, ce qui me distingue, ce que j'explore)</label>
+<textarea class="m" id="p8k" data-k="p8k"></textarea>
+
+<h3>Préparer mon rendez-vous avec mon conseiller</h3>
+<textarea class="l" id="p8l" data-k="p8l" aria-label="Préparation du rendez-vous conseiller : piste principale et réserve, ce que j'ai testé, 3 questions précises, ce que j'attends"></textarea>
+<p class="hint">Quatre rubriques : ma piste principale et ma réserve ; ce que j'ai testé et appris ; mes 3 questions précises ; ce que j'attends du rendez-vous.</p>
+
+<label class="q" for="p8n">Lettre à moi-même dans 90 jours : « Il y a trois mois, je ne savais pas encore que… »</label>
+<textarea class="l" id="p8n" data-k="p8n"></textarea>
+<label class="q" for="p8o">3 raisons possibles d'échec de mon plan, chacune avec une phrase « Si… alors… »</label>
+<textarea class="m" id="p8o" data-k="p8o"></textarea>
+<label class="q" for="p8p">Mes signes de progrès observables : 3 pour le mois 1, 3 pour le mois 2, 3 pour le mois 3</label>
+<textarea class="l" id="p8p" data-k="p8p"></textarea>
+<div class="grid g2">
+<div><label class="q" for="p8q">À qui j'annonce mon choix, quand (sous 7 jours), et ma demande précise</label><textarea class="m" id="p8q" data-k="p8q"></textarea></div>
+<div><label class="q" for="p8r">Mon créneau hebdomadaire pour ma piste de réserve</label><textarea class="m" id="p8r" data-k="p8r"></textarea></div>
+</div>
+
+<h3>Relecture : une phrase gardée par page</h3>
+<textarea class="l" id="p8s" data-k="p8s" aria-label="Une phrase gardée par page, pages 1 à 8"></textarea>
+
+<div class="biblio"><h3>Bibliographie de l'épisode 8</h3><ul>
+<li>Sheena Iyengar, Rachael Wells et Barry Schwartz, <a href="https://pubmed.ncbi.nlm.nih.gov/16466422/" target="_blank" rel="noopener">« Doing better but feeling worse: Looking for the "best" job undermines satisfaction »</a>, Psychological Science, 2006.</li>
+<li>Peter Gollwitzer et Paschal Sheeran, <a href="https://www.sciencedirect.com/science/article/pii/S0065260106380021" target="_blank" rel="noopener">« Implementation Intentions and Goal Achievement: A Meta-analysis of Effects and Processes »</a>, Advances in Experimental Social Psychology, 2006.</li>
+<li><a href="https://doi.org/10.1080/10463283.2024.2334563" target="_blank" rel="noopener">« The when and how of planning: Meta-analysis of the scope and components of implementation intentions in 642 tests »</a>, European Review of Social Psychology, 2024.</li>
+<li>Bill Burnett et Dave Evans, <em>Designing Your Life</em> : les étapes du choix.</li>
+<li>France Travail, <a href="https://www.francetravail.fr/candidat/votre-projet-professionnel/definir-votre-projet-professionn/le-conseil-en-evolution-professi.html" target="_blank" rel="noopener">Le conseil en évolution professionnelle</a> ; Ministère du Travail, <a href="https://travail-emploi.gouv.fr/formation-professionnelle/certification-competences-pro/CEP" target="_blank" rel="noopener">Le conseil en évolution professionnelle (CEP)</a>.</li>
+</ul></div>
+</section>
+</main>
+</div>
+<script>
+(function(){
+  var P='pvuc-carnet:';
+  var fields=document.querySelectorAll('textarea[data-k]');
+  function save(k,v){try{localStorage.setItem(P+k,v)}catch(e){}}
+  function load(k){try{return localStorage.getItem(P+k)}catch(e){return null}}
+  function fit(t){t.style.height='auto';t.style.height=Math.max(t.scrollHeight+2,t.offsetHeight)+'px'}
+  fields.forEach(function(t){
+    var v=load(t.dataset.k);if(v){t.value=v}
+    t.addEventListener('input',function(){save(t.dataset.k,t.value)});
+  });
+  window.addEventListener('beforeprint',function(){
+    fields.forEach(function(t){t.style.height='auto';t.style.height=Math.max(t.scrollHeight+2,t.offsetHeight)+'px'});
+  });
+  document.getElementById('clear').addEventListener('click',function(){
+    if(!confirm('Effacer toutes tes réponses de ce carnet ? Cette action est définitive.'))return;
+    fields.forEach(function(t){t.value='';try{localStorage.removeItem(P+t.dataset.k)}catch(e){}});
+  });
+})();
+</script>
+</body>
+</html>
